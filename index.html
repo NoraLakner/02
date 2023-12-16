@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paralelogramma területének kiszámítása</title>
+  <style>
+    body {
+        background-color: #e7dbe9;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    div {
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      color: #140115;
+    }
+
+    input {
+      padding: 5px;
+      margin: 5px 0;
+    }
+
+    button {
+      background-color: #460a44;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px; 
+    }
+
+    button:hover {
+      background-color: #3d0d30;
+    }
+
+    #result1, #result2 {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="paralel.js" defer></script>
+</head>
+<body>
+
+  <div>
+    <h1>Paralelogramma területének kiszámítása</h1>
+
+    <h2>1. módszer</h2>
+    <form id="paralelogrammaForm1">
+      <label for="sideA1">oldal hossza: </label>
+      <input type="number" id="sideA1" required>
+
+      <label for="heightA1">oldal magassága: </label>
+      <input type="number" id="heightA1" required>
+
+      <br>
+
+      <button type="button" onclick="calculateArea1()">Számol</button>
+    </form>
+
+    <p id="result1"></p>
+
+    <h2>2. módszer</h2>
+    <form id="paralelogrammaForm2">
+      <label for="sideA2">a oldal: </label>
+      <input type="number" id="sideA2" required>
+
+      <label for="sideB2">b oldal: </label>
+      <input type="number" id="sideB2" required>
+
+      <label for="angle2">Bezárt szög (fokban): </label>
+      <input type="number" id="angle2" required>
+
+      <br>
+
+      <button type="button" onclick="calculateArea2()">Számol</button>
+    </form>
+
+    <p id="result2"></p>
+  </div>
+
+  <script>
+    
+    const script = document.createElement('script');
+    script.src = 'paralel.js';
+    script.defer = true;
+    document.head.appendChild(script);
+
+     function calculateArea1() {
+      const a = parseFloat(document.getElementById('sideA1').value);
+      const ha = parseFloat(document.getElementById('heightA1').value);
+
+      const resultElement = document.getElementById('result1');
+      if (resultElement) {
+        const terulet = paralelogrammaTerulet1(a, ha);
+        resultElement.innerText = `A paralelogramma területe: ${terulet.toFixed(2)}`;
+      }
+    }
+
+    function calculateArea2() {
+      const a = parseFloat(document.getElementById('sideA2').value);
+      const b = parseFloat(document.getElementById('sideB2').value);
+      const szog = parseFloat(document.getElementById('angle2').value);
+
+      const resultElement = document.getElementById('result2');
+      if (resultElement) {
+        const terulet = paralelogrammaTerulet2(a, b, szog);
+        resultElement.innerText = `A paralelogramma területe: ${terulet.toFixed(2)}`;
+      }
+    }
+  </script>
+
+</body>
+</html>
